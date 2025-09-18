@@ -8,7 +8,7 @@ kubectl apply -f metallb-native.yaml
 
 kubectl -n metallb-system get pods
 
-kubectl apply -f metallb-ipaddresspool.yaml
+kubectl apply -f metallb-config.yaml
 
 ## ingress-nginx ##
 
