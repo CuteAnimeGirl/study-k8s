@@ -5,9 +5,7 @@
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
 # or
 kubectl apply -f metallb-native.yaml
-
 kubectl -n metallb-system get pods
-
 kubectl apply -f metallb-ipaddresspool.yaml
 
 ## ingress-nginx ##
