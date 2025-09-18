@@ -19,20 +19,12 @@ kubectl apply -f ingress-nginx.yaml
 kubectl get pods -n ingress-nginx
 kubectl get svc -n ingress-nginx
 
-## cert-manager ##
-
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.18.2/cert-manager.yaml
-# or
-kubectl apply -f cert-manager.yaml
-
-kubectl get pods -n cert-manager
-
-kubectl apply -f cluster-issuer.yaml
-
-kubectl describe clusterissuer letsencrypt-staging
-
 ## app ##
 
-kubectl create ns my-app
+kubectl apply -f test-app-deployment.yaml
+kubectl apply -f test-app-service.yaml
 
-kubectl apply -f app-deployment.yaml
+kubectl get pods -l app=test-web-app
+kubectl get svc test-web-app-service
+
+kubectl apply -f test-app-ingress.yaml
