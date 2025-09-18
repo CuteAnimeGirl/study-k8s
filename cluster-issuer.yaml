@@ -4,15 +4,16 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
+    email: voroninaleksandr98@gmail.com
     server: https://acme-staging-v02.api.letsencrypt.org/directory
-    email: voroninaleksandr98@gmail.com # Замените на свой реальный email
     privateKeySecretRef:
       name: letsencrypt-staging
     solvers:
     - http01:
         ingress:
           class: nginx
-    dns01:
-      recursiveNameservers:
-      - "8.8.8.8:53"
-      - "1.1.1.1:53"
+      # DNS-серверы указываются здесь, внутри solver
+      dns01:
+        recursiveNameservers:
+        - "8.8.8.8:53"
+        - "1.1.1.1:53"
