@@ -21,10 +21,7 @@ kubectl get svc -n ingress-nginx
 
 ## app ##
 
-kubectl apply -f test-app-deployment.yaml
-kubectl apply -f test-app-service.yaml
+kubectl apply -f test-app.yaml
 
 kubectl get pods -l app=test-web-app
 kubectl get svc test-web-app-service
-
-kubectl apply -f test-app-ingress.yaml
