@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-web-app
+  name: test-web-app1
   labels:
-    app: test-web-app
+    app: test-web-app1
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: test-web-app
+      app: test-web-app1
   template:
     metadata:
       labels:
-        app: test-web-app
+        app: test-web-app1
     spec:
       containers:
       - name: nginx
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-web-app-service
+  name: test-web-app-service1
 spec:
   selector:
-    app: test-web-app
+    app: test-web-app1
   ports:
     - protocol: TCP
       port: 80
@@ -42,13 +42,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: k8s-ingress1.lan
+  - host: app1.k8s-ingress1.lan
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: test-web-app-service
+            name: test-web-app-service1
             port:
               number: 80
