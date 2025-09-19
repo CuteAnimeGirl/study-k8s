@@ -1,3 +1,3 @@
 git add .
-git commit -m "ss"
+git commit -m "auto"
 git push
