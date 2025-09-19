@@ -24,6 +24,7 @@ kubectl apply -f storage-class.yaml
 ## app ##
 
 kubectl apply -f app1.yaml -f app2.yaml -f app-ingress.yaml
+#kubectl delete -f app1.yaml -f app2.yaml -f app-ingress.yaml -f storage-class.yaml
 
 chmod +x init-pods.sh
 ./init-pods.sh
