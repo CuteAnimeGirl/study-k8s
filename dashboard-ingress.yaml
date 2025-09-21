@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: dashboard.k8s.lan
+  - host: dashboard.k8s-ingress1.lan
     http:
       paths:
       - path: /
