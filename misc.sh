@@ -19,11 +19,15 @@ kubectl get svc -n ingress-nginx
 
 ## longhorn ##
 
+longhornctl --kube-config ~/.kube/config --image longhornio/longhorn-cli:v1.9.1 install preflight
+
 helm repo add longhorn https://charts.longhorn.io
 helm repo update
 helm install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace
 
-kubectl apply -f longhorn-storageclass.yaml
+kubectl get pods -n longhorn-system
+
+kubectl create -f longhorn-storageclass.yaml
 
 ## app ##
 
