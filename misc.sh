@@ -42,6 +42,6 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dash
 
 kubectl apply -f dashboard-serviceaccount.yaml
 
-kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+kubectl -n kubernetes-dashboard create token admin-user
 
 kubectl apply -f dashboard-ingress.yaml
