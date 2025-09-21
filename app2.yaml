@@ -5,7 +5,7 @@ metadata:
   labels:
     app: app2
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: app2
@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: nginx-storage
+        - name: app-storage
           mountPath: /usr/share/nginx/html
         # Добавляем тестовую страницу
         command: ['/bin/sh', '-c']
@@ -29,7 +29,7 @@ spec:
             echo "<html><body><h1>App2 - Persistent Data</h1><p>Host: $(hostname)</p><p>Time: $(date)</p></body></html>" > /usr/share/nginx/html/index.html
             exec nginx -g 'daemon off;'
       volumes:
-      - name: nginx-storage
+      - name: app-storage
         persistentVolumeClaim:
           claimName: app2-pvc
 ---
@@ -40,7 +40,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: longhorn-custom
   resources:
     requests:
       storage: 1Gi

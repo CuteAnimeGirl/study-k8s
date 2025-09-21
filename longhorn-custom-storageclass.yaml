@@ -6,6 +6,6 @@ provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
   numberOfReplicas: "2"
-  staleReplicaTimeout: "2880" # 48 часов в минутах
+  staleReplicaTimeout: "180"
   fromBackup: ""
   fsType: "ext4"
