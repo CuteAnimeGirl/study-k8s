@@ -26,5 +26,9 @@ kubectl apply -f storage-class.yaml
 kubectl apply -f app1.yaml -f app2.yaml -f app-ingress.yaml
 #kubectl delete -f app1.yaml -f app2.yaml -f app-ingress.yaml -f storage-class.yaml
 
-chmod +x init-pods.sh
-./init-pods.sh
+
+
+
+
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
