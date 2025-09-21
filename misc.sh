@@ -17,18 +17,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl get pods -n ingress-nginx
 kubectl get svc -n ingress-nginx
 
-## Storage ##
-
-kubectl apply -f storage-class.yaml
-
 ## app ng ##
 
 kubectl apply -f app1.yaml -f app2.yaml -f app-ingress.yaml
 #kubectl delete -f app1.yaml -f app2.yaml -f app-ingress.yaml -f storage-class.yaml
-
-
-
-
-
-helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
