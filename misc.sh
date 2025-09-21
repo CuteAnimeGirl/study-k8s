@@ -27,7 +27,7 @@ helm install longhorn longhorn/longhorn --namespace longhorn-system --create-nam
 
 kubectl get pods -n longhorn-system
 
-kubectl create -f longhorn-storageclass.yaml
+kubectl create -f longhorn-custom-storageclass.yaml
 
 ## app ##
 
