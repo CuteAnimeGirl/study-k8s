@@ -17,7 +17,16 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 kubectl get pods -n ingress-nginx
 kubectl get svc -n ingress-nginx
 
-## app ng ##
+## longhorn ##
+
+helm repo add longhorn https://charts.longhorn.io
+helm repo update
+helm install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace
+
+kubectl apply -f longhorn-storageclass.yaml
+
+## app ##
 
 kubectl apply -f app1.yaml -f app2.yaml -f app-ingress.yaml
 #kubectl delete -f app1.yaml -f app2.yaml -f app-ingress.yaml -f storage-class.yaml
+
