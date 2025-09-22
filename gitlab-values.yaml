@@ -1,0 +1,44 @@
+global:
+  hosts:
+    domain: k8s-ingress1.lan
+    gitlab:
+      name: gitlab.k8s-ingress1.lan
+    registry:
+      name: registry.k8s-ingress1.lan
+  ingress:
+    class: nginx
+    tls:
+      enabled: false
+
+gitlab-runner:
+  install: true
+  runners:
+    privileged: true
+
+registry:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 8Gi
+    storageClass: longhorn-sc1
+
+postgresql:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 4Gi
+    storageClass: longhorn-sc1
+
+redis:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 2Gi
+    storageClass: longhorn-sc1
+
+gitlab:
+  gitaly:
+    persistence:
+      enabled: true
+      size: 8Gi
+      storageClass: longhorn-sc1
