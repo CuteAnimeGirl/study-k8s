@@ -33,7 +33,7 @@ postgresql:
     storageClass: longhorn-sc1
 
 redis:
-  enabled: true
+  install: true
   persistence:
     enabled: true
     size: 2Gi
