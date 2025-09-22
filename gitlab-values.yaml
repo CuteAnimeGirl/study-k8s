@@ -10,7 +10,7 @@ global:
     tls:
       enabled: false
     annotations:
-      kubernetes.io/ingress.class: nginx
+      k8s.io/ingress-nginx: nginx
   nginx-ingress:
     enabled: false
 
