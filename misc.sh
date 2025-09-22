@@ -1,47 +1,46 @@
 #!/bin/bash
 
 ## Metallb ##
-
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
-# or kubectl apply -f metallb-native.yaml
+helm upgrade --install metallb metallb/metallb \
+  --repo https://metallb.github.io/metallb \
+  --namespace metallb-system --create-namespace \
+  --version 0.15.2
 
 kubectl -n metallb-system get pods
+kubectl apply -f metallb-conf.yaml
 
-kubectl apply -f metallb-config.yaml
-
-## ingress-nginx ##
-
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.13.2/deploy/static/provider/cloud/deploy.yaml
-# or kubectl apply -f ingress-nginx.yaml
+## Ingress-nginx ##
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace \
+  --version 4.13.2
 
 kubectl get pods -n ingress-nginx
 kubectl get svc -n ingress-nginx
 
-## longhorn ##
+## Longhorn ##
+#curl -sSfL -o longhornctl https://github.com/longhorn/cli/releases/download/v1.9.1/longhornctl-linux-amd64
+#chmod +x longhornctl
 
-longhornctl --kube-config ~/.kube/config --image longhornio/longhorn-cli:v1.9.1 install preflight
+./longhornctl --kube-config ~/.kube/config --image longhornio/longhorn-cli:v1.9.1 install preflight
 
-helm upgrade --install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace
+helm upgrade --install longhorn longhorn/longhorn \
+  --repo https://charts.longhorn.io \
+  --namespace longhorn-system --create-namespace \
+  --version 1.9.1
+
+helm repo add longhorn https://charts.longhorn.io
+helm repo update
+helm install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace --version 1.9.1
 
 kubectl get pods -n longhorn-system
+kubectl apply -f longhorn-sc1.yaml
 
-kubectl create -f longhorn-custom-storageclass.yaml
+## Kubernetes Dashboard ##
 
-## app ##
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard \
+  --repo https://kubernetes.github.io/dashboard/ \
+  --namespace kubernetes-dashboard --create-namespace \
+  --version 7.13.0
 
-kubectl apply -f app1.yaml -f app2.yaml -f ingress-main.yaml
-#kubectl delete -f app1.yaml -f app2.yaml -f app-ingress.yaml -f storage-class.yaml
-
-kubectl get pods -n longhorn-system -n default
-
-## k8s web ##
-
-helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-
-helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
-
-kubectl apply -f dashboard-serviceaccount.yaml
-
-kubectl -n kubernetes-dashboard create token admin-user
-
-kubectl apply -f dashboard-ingress.yaml
+kubectl apply -f k8s-dashboard-cluster-admin.yaml -f k8s-dashboard-ingress.yaml
