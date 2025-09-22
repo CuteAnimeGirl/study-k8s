@@ -41,3 +41,5 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard \
 kubectl get pods -n kubernetes-dashboard -w
 
 kubectl apply -f k8s-dashboard-cluster-admin.yaml -f k8s-dashboard-ingress.yaml
+
+kubectl -n kubernetes-dashboard create token admin-user
