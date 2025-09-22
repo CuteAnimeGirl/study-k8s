@@ -17,6 +17,12 @@ global:
 certmanager-issuer:
   email: admin@k8s-ingress1.lan
 
+nginx-ingress:
+  enabled: false
+  controller:
+    ingressClassResource:
+      enabled: false 
+
 gitlab-runner:
   install: true
   runners:
