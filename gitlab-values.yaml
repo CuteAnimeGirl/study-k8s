@@ -69,3 +69,6 @@ gitlab-runner:
       [[runners]]
         [runners.kubernetes]
           namespace = "{{.Release.Namespace}}"
+
+certmanager-issuer:
+  email: voroninaleksandr98@gmail.com
