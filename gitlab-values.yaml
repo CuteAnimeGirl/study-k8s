@@ -5,6 +5,7 @@ global:
       name: gitlab.k8s-ingress1.lan
     registry:
       name: registry.k8s-ingress1.lan
+    https: false
     minio:
       enabled: false
 
