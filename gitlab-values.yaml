@@ -42,6 +42,9 @@ registry:
     size: 8Gi
     storageClass: longhorn-sc1
 
+certmanager-issuer:
+  email: voroninaleksandr98@gmail.com
+
 minio:
   enabled: false
 
