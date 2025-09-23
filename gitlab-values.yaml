@@ -5,7 +5,9 @@ global:
       name: gitlab.k8s-ingress1.lan
     registry:
       name: registry.k8s-ingress1.lan
-  
+    minio:
+      enabled: false
+
   ingress:
     configuredClass: "nginx"
     tls:
@@ -44,9 +46,6 @@ registry:
 
 certmanager-issuer:
   email: voroninaleksandr98@gmail.com
-
-minio:
-  enabled: false
 
 cert-manager:
   install: false
