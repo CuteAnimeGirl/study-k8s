@@ -13,8 +13,6 @@ global:
     сlass: "nginx"
     tls:
       enabled: false
-    annotations:
-      kubernetes.io/ingress.class: nginx
 
 nginx-ingress:
   enabled: false
