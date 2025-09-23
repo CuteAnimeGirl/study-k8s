@@ -1,6 +1,7 @@
 global:
   hosts:
     domain: k8s-ingress1.lan
+    https: false
     gitlab:
       name: gitlab.k8s-ingress1.lan
     registry:
