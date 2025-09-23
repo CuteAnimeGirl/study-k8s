@@ -17,12 +17,36 @@ global:
   appConfig:
     lfs:
       bucket: gitlab-lfs
+      connection:
+        endpoint: "http://minio.k8s-ingress1.lan"
+        access_key: "minioadmin"
+        secret_key: "minioadmin123"
+        provider: "AWS"
+        path_style: true
     artifacts:
       bucket: gitlab-artifacts
+      connection:
+        endpoint: "http://minio.k8s-ingress1.lan"
+        access_key: "minioadmin"
+        secret_key: "minioadmin123"
+        provider: "AWS"
+        path_style: true
     uploads:
       bucket: gitlab-uploads
+      connection:
+        endpoint: "http://minio.k8s-ingress1.lan"
+        access_key: "minioadmin"
+        secret_key: "minioadmin123"
+        provider: "AWS"
+        path_style: true
     packages:
       bucket: gitlab-packages
+      connection:
+        endpoint: "http://minio.k8s-ingress1.lan"
+        access_key: "minioadmin"
+        secret_key: "minioadmin123"
+        provider: "AWS"
+        path_style: true
 
 nginx-ingress:
   enabled: false
@@ -56,19 +80,13 @@ registry:
     storageClass: longhorn-sc1
 
 minio:
+  auth:
+    rootUser: minioadmin
+    rootPassword: "minioadmin123"
   persistence:
     enabled: true
     size: 8Gi
     storageClass: longhorn-sc1
-
-gitlab-runner:
-  install: true
-  runners:
-    privileged: false
-    config: |
-      [[runners]]
-        [runners.kubernetes]
-          namespace = "{{.Release.Namespace}}"
 
 certmanager-issuer:
   email: voroninaleksandr98@gmail.com
