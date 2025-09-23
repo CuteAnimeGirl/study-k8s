@@ -6,6 +6,7 @@ global:
     registry:
       name: registry.k8s-ingress1.lan
     minio:
+      enabled: true
       name: minio.k8s-ingress1.lan
   
   ingress:
@@ -55,7 +56,6 @@ registry:
     storageClass: longhorn-sc1
 
 minio:
-  enabled: true
   persistence:
     enabled: true
     size: 8Gi
