@@ -1,6 +1,9 @@
 protocolHttp: true
 extraArgs:
   - --enable-insecure-login
+  - --insecure-bind-address=0.0.0.0
+  - --namespace=kubernetes-dashboard
+
 service:
   port: 80
   targetPort: http
