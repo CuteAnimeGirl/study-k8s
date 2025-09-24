@@ -52,16 +52,31 @@ kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath="{.data.token}
 
 ## Gitlab ##
 
-kubectl apply -f gitlab-namespace.yaml -f gitlab-pvc.yaml -f gitlab-deployment.yaml -f gitlab-service.yaml -f gitlab-ingress.yaml
+kubectl apply -f gitlab-namespace.yaml
+
+kubectl create secret generic gitlab-secrets \
+  --namespace=gitlab \
+  --from-literal=root-password=test-password-5454!
+
+kubectl apply -f gitlab-deployment.yaml -f gitlab-service.yaml -f gitlab-ingress.yaml
 
 kubectl get pods -n gitlab -w
 
 ## MinIO ##
 
-kubectl apply -f minio-secret.yaml
+kubectl apply -f minio-namespace.yaml
+
+kubectl create secret generic minio-secret \
+  --namespace=minio \
+  --from-literal=rootUser=minioadmin \
+  --from-literal=rootPassword=test-password-5454!
 
 helm upgrade --install minio minio \
   --repo https://charts.min.io/ \
   --namespace minio --create-namespace \
   --version 5.4.0 \
   --f minio-values.yaml
+
+kubectl apply -f minio-ingress.yaml
+
+kubectl get pods -n minio -w

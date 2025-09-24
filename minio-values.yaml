@@ -1,25 +1,9 @@
 existingSecret: minio-secret
 
 persistence:
-  enabled: true
   size: 32Gi
   storageClass: longhorn-sc1
   accessMode: ReadWriteOnce
 
 mode: standalone
 replicas: 1
-
-service:
-  type: ClusterIP
-  port: 9000
-
-ingress:
-  enabled: true
-  ingressClassName: nginx
-  hosts:
-    - host: minio.k8s-ingress1.lan
-      paths:
-        - path: /
-          pathType: Prefix
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "100m"

@@ -5,7 +5,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 10.8.11.232-10.8.11.240 # Выделить диапазон
+  - 10.8.11.232-10.8.11.240
 
 ---
 apiVersion: metallb.io/v1beta1
