@@ -27,6 +27,9 @@ spec:
             gitlab_rails['gitlab_shell_ssh_port'] = 22
             nginx['listen_port'] = 80
             nginx['listen_https'] = false
+        envFrom:
+        - secretRef:
+            name: gitlab-secrets
         volumeMounts:
         - name: gitlab-data
           mountPath: /var/opt/gitlab
@@ -34,3 +37,13 @@ spec:
       - name: gitlab-data
         persistentVolumeClaim:
           claimName: gitlab-pvc
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-secrets
+  namespace: gitlab
+type: Opaque
+data:
+  root-password: dquote>
