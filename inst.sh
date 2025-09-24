@@ -53,3 +53,5 @@ kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath="{.data.token}
 ## Gitlab ##
 
 kubectl apply -f gitlab-namespace.yaml -f gitlab-pvc.yaml -f gitlab-deployment.yaml -f gitlab-service.yaml -f gitlab-ingress.yaml
+
+kubectl get pods -n gitlab -w

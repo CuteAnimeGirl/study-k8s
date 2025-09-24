@@ -41,9 +41,3 @@ spec:
       - name: gitlab-data
         persistentVolumeClaim:
           claimName: gitlab-pvc
-      - name: gitlab-logs
-        persistentVolumeClaim:
-          claimName: gitlab-pvc
-      - name: gitlab-storage
-        persistentVolumeClaim:
-          claimName: gitlab-pvc
