@@ -6,12 +6,9 @@ service:
   targetPort: http
 
 kong:
-  enabled: true
   proxy:
-    type: ClusterIP
     http:
       enabled: true
       servicePort: 80
-      containerPort: 8000
     tls:
       enabled: false

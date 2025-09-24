@@ -45,6 +45,5 @@ kubectl get pods -n kubernetes-dashboard -w
 kubectl apply -f k8s-dashboard-cluster-admin.yaml -f k8s-dashboard-ingress.yaml
 
 kubectl -n kubernetes-dashboard create token admin-user
-kubectl get secret admin-user-token -n kubernetes-dashboard -o jsonpath='{.data}' | jq '. | map_values(@base64d)'
 
 ## Gitlab ##
