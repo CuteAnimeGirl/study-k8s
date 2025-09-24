@@ -38,7 +38,6 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard \
   --repo https://kubernetes.github.io/dashboard \
   --namespace kubernetes-dashboard --create-namespace \
   --version 7.13.0\
-  -f k8s-dashboard-values.yaml
 
 kubectl get pods -n kubernetes-dashboard -w
 
