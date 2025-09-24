@@ -1,9 +1,0 @@
-existingSecret: minio-secret
-
-persistence:
-  size: 16Gi
-  storageClass: longhorn-sc1
-  accessMode: ReadWriteOnce
-
-mode: standalone
-replicas: 1

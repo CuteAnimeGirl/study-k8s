@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: longhorn
+    component: manager
+  name: longhorn-manager-metrics
+  namespace: longhorn-system
+spec:
+  ports:
+  - name: metrics
+    port: 9500
+    protocol: TCP
+    targetPort: metrics
+  selector:
+    app: longhorn
+    component: manager
+  type: ClusterIP
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: longhorn
+    release: prometheus-stack # Должен совпадать с именем релиза Helm
+  name: longhorn-monitoring
+  namespace: longhorn-system
+spec:
+  endpoints:
+  - port: metrics
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - longhorn-system
+  selector:
+    matchLabels:
+      app: longhorn
+      component: manager
