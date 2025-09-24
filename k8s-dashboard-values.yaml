@@ -1,0 +1,6 @@
+protocolHttp: true
+extraArgs:
+  - --enable-insecure-login
+service:
+  port: 80
+  targetPort: http

@@ -38,6 +38,7 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard \
   --repo https://kubernetes.github.io/dashboard \
   --namespace kubernetes-dashboard --create-namespace \
   --version 7.13.0
+  -f dashboard-values.yaml
 
 kubectl get pods -n kubernetes-dashboard -w
 
@@ -46,15 +47,4 @@ kubectl apply -f k8s-dashboard-cluster-admin.yaml -f k8s-dashboard-ingress.yaml
 kubectl -n kubernetes-dashboard create token admin-user
 kubectl get secret admin-user-token -n kubernetes-dashboard -o jsonpath='{.data}' | jq '. | map_values(@base64d)'
 
-## GitLab ##
-helm upgrade --install gitlab gitlab \
---repo https://charts.gitlab.io \
---namespace gitlab --create-namespace \
---version 9.4.0 \
--f gitlab-values.yaml
-
-kubectl -n gitlab get pods -w
-
-kubectl apply -f gitlab-ingress.yaml
-
-kubectl -n gitlab get secret gitlab-gitlab-initial-root-password -o jsonpath='{.data.password}' | base64 --decode ; echo
+## Gitlab ##
