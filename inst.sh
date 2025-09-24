@@ -37,7 +37,7 @@ kubectl apply -f longhorn-sc1.yaml -f longhorn-ingress.yaml
 helm upgrade --install kubernetes-dashboard kubernetes-dashboard \
   --repo https://kubernetes.github.io/dashboard \
   --namespace kubernetes-dashboard --create-namespace \
-  --version 7.13.0\
+  --version 7.13.0
 
 kubectl get pods -n kubernetes-dashboard -w
 
