@@ -24,6 +24,10 @@ kubectl get svc -n ingress-nginx
 #chmod +x longhornctl
 
 ./longhornctl --kube-config ~/.kube/config --image longhornio/longhorn-cli:v1.9.1 install preflight
+
+ansible wrk -b -m modprobe -a "name=dm_crypt state=present"
+ansible wrk -b -m copy -a "content='dm_crypt' dest=/etc/modules-load.d/dm_crypt.conf owner=root group=root mode=0644"
+
 ./longhornctl --kube-config ~/.kube/config --image longhornio/longhorn-cli:v1.9.1 check preflight
 
 helm upgrade --install longhorn longhorn \
@@ -47,3 +51,5 @@ kubectl apply -f k8s-dashboard-cluster-admin.yaml -f k8s-dashboard-ingress.yaml
 kubectl get secret admin-user -n kubernetes-dashboard -o jsonpath="{.data.token}" | base64 -d
 
 ## Gitlab ##
+
+kubectl apply -f gitlab-pvc.yaml -f gitlab-deployment.yaml -f gitlab-service.yaml -f gitlab-ingress.yaml

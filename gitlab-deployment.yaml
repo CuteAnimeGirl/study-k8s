@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitlab
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - name: gitlab
+        image: gitlab/gitlab-ce:18.4.0
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 22
+        env:
+        - name: GITLAB_OMNIBUS_CONFIG
+          value: |
+            external_url 'http://gitlab.k8s-ingress1.lan'
+            gitlab_rails['gitlab_shell_ssh_port'] = 22
+            nginx['listen_port'] = 80
+            nginx['listen_https'] = false
+        volumeMounts:
+        - name: gitlab-data
+          mountPath: /etc/gitlab
+        - name: gitlab-logs
+          mountPath: /var/log/gitlab
+        - name: gitlab-storage
+          mountPath: /var/opt/gitlab
+      volumes:
+      - name: gitlab-data
+        persistentVolumeClaim:
+          claimName: gitlab-pvc
+          subPath: etc
+      - name: gitlab-logs
+        persistentVolumeClaim:
+          claimName: gitlab-pvc
+          subPath: logs
+      - name: gitlab-storage
+        persistentVolumeClaim:
+          claimName: gitlab-pvc
+          subPath: data
