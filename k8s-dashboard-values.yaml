@@ -4,3 +4,11 @@ extraArgs:
 service:
   port: 80
   targetPort: http
+kong:
+  proxy:
+    http:
+      enabled: true
+      servicePort: 80
+      containerPort: 8000
+    tls:
+      enabled: false
