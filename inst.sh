@@ -24,6 +24,7 @@ kubectl get svc -n ingress-nginx
 #chmod +x longhornctl
 
 ./longhornctl --kube-config ~/.kube/config --image longhornio/longhorn-cli:v1.9.1 install preflight
+./longhornctl --kube-config ~/.kube/config --image longhornio/longhorn-cli:v1.9.1 check preflight
 
 helm upgrade --install longhorn longhorn \
   --repo https://charts.longhorn.io \
