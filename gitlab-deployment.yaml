@@ -29,14 +29,7 @@ spec:
             nginx['listen_https'] = false
         volumeMounts:
         - name: gitlab-data
-          mountPath: /etc/gitlab
-          subPath: etc
-        - name: gitlab-logs
-          mountPath: /var/log/gitlab
-          subPath: logs
-        - name: gitlab-storage
           mountPath: /var/opt/gitlab
-          subPath: data
       volumes:
       - name: gitlab-data
         persistentVolumeClaim:
