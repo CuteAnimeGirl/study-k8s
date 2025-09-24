@@ -42,12 +42,13 @@ kubectl apply -f longhorn-sc1.yaml -f longhorn-ingress.yaml
 helm upgrade --install prometheus-stack prometheus-community/kube-prometheus-stack \
   --namespace monitoring --create-namespace \
   --version 77.11.0 \
-  -f prometheus-stack-values.yaml
+  -f prometheus-values.yaml
 
 kubectl get pods -n monitoring -w
 
-## Gitlab ##
+kubectl apply -f prometheus-ingress.yaml
 
+## Gitlab ##
 kubectl apply -f gitlab-namespace.yaml
 
 kubectl create secret generic gitlab-secrets \
