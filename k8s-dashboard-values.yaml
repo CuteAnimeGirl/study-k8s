@@ -4,8 +4,11 @@ extraArgs:
 service:
   port: 80
   targetPort: http
+
 kong:
+  enabled: true
   proxy:
+    type: ClusterIP
     http:
       enabled: true
       servicePort: 80
