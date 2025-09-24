@@ -75,7 +75,7 @@ helm upgrade --install minio minio \
   --repo https://charts.min.io/ \
   --namespace minio --create-namespace \
   --version 5.4.0 \
-  --f minio-values.yaml
+  -f minio-values.yaml
 
 kubectl apply -f minio-ingress.yaml
 
