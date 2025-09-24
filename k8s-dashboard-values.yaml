@@ -3,6 +3,7 @@ extraArgs:
   - --enable-insecure-login
   - --insecure-bind-address=0.0.0.0
   - --namespace=kubernetes-dashboard
+  - --insecure-port=9090
 
 service:
   port: 80
