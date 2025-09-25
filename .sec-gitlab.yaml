@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: gitlab-secrets
+  namespace: gitlab
+type: Opaque
+stringData:
+  GITLAB_ROOT_PASSWORD: "test-password-5454!"
