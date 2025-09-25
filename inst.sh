@@ -41,14 +41,14 @@ kubectl apply -f longhorn-sc1.yaml -f longhorn-ingress.yaml
 ## Prometheus Stack ##
 kubectl apply -f monitoring-namespace.yaml
 
-kubectl create secret generic grafana-admin-secret \
-  --namespace=monitoring \
-  --from-literal=admin-password=test-password-5454!
-
 helm upgrade --install prometheus-stack prometheus-community/kube-prometheus-stack \
   --namespace monitoring --create-namespace \
   --version 77.11.0 \
   -f monitoring-values.yaml
+
+kubectl create secret generic prometheus-stack-grafana \
+  --namespace=monitoring \
+  --from-literal=admin-password=test-password-5454!
 
 kubectl get pods -n monitoring -w
 

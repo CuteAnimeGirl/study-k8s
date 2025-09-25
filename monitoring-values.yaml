@@ -17,11 +17,6 @@ kube-state-metrics:
   enabled: true
 
 grafana:
-  admin:
-    existingSecret: grafana-admin-secret
-    passwordKey: admin-password
-  adminUser: admin
-  adminPassword: ""
   persistence:
     enabled: true
     storageClassName: longhorn-sc1
