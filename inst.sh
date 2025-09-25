@@ -43,7 +43,7 @@ helm upgrade --install prometheus-stack prometheus-community/kube-prometheus-sta
   --namespace monitoring --create-namespace \
   --version 77.11.0 \
   -f monitoring-values.yaml\
-  -f monitoring-sec.yaml
+  -f .sec-monitoring.yaml
 
 kubectl get pods -n monitoring -w
 
