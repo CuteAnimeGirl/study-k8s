@@ -53,3 +53,6 @@ kubectl apply -f monitoring-ingress.yaml
 kubectl apply -f gitlab-namespace.yaml -f .sec-gitlab.yaml -f gitlab-deployment.yaml -f gitlab-service.yaml -f gitlab-ingress.yaml
 
 kubectl get pods -n gitlab -w
+
+
+asdcsdasa
